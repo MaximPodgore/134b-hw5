@@ -42,83 +42,14 @@
 
       <section aria-labelledby="pcards-heading">
         <h2 id="pcards-heading">Custom Element: project-card</h2>
-        <p class="muted">Below are a few hardcoded examples created with the CustomElements API for Part 1.</p>
+        <p class="muted">Use the buttons to load cards from LocalStorage or a remote API.</p>
+        <div class="load-controls" role="group" aria-label="Data loading controls">
+          <button id="btn-load-local" type="button">Load Local</button>
+          <button id="btn-load-remote" type="button">Load Remote</button>
+        </div>
         <div id="project-list" class="project-grid" aria-label="Project Cards"></div>
       </section>
-
-      <section>
-        <h2>Pinned Repositories</h2>
-        <ul class="projects-list">
-          <li>
-            <figure class="project-figure" aria-hidden="false">
-              <picture>
-                <source type="image/webp" media="(max-width:900px)" srcset="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80&fm=webp 1200w, https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80&fm=webp 800w">
-                <source media="(min-width:900px)" srcset="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80 1200w, https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80 800w">
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80" alt="Code editor on a laptop — TuRBO-O repository" class="responsive-img" loading="lazy" decoding="async" width="200" height="200" sizes="(max-width:900px) 100vw, 200px">
-              </picture>
-            </figure>
-            <project-content>
-              <h3><a href="https://github.com/MaximPodgore/TuRBO-O">TuRBO-O</a></h3>
-              <p>Improving the Turbo Algorithm by adding a global kernel updated via Deep Kernel Learning, and the addition of the Upper Confidence Bound Algorithm for better exploration/exploitation.</p>
-              <div class="tag-list" role="list">
-                <button role="listitem">Tool</button>
-                <button role="listitem">Framework</button>
-                <button role="listitem">Library</button>
-              </div>
-            </project-content>
-          </li>
-          <li>
-            <figure class="project-figure" aria-hidden="false">
-                <img src="images/blackjack.jpeg" alt="clip art of Blackjack" class="responsive-img" loading="lazy" decoding="async" width="200" height="200">
-            </figure>
-            <project-content>
-              <h3><a href="https://github.com/MaximPodgore/Blackjack-AI">Blackjack-AI</a></h3>
-              <p>Blackjack AI using Monte Carlo, TD, and Q-Learning that learns optimal strategies through self-play with real-time visualizations of state values and decisions.</p>
-              <div class="tag-list" role="list">
-                <button role="listitem">AI</button>
-                <button role="listitem">Reinforcement</button>
-                <button role="listitem">Visualization</button>
-              </div>
-            </project-content>
-          </li>
-          <li>
-            <figure class="project-figure" aria-hidden="false">
-              <picture>
-                <source type="image/webp" media="(min-width:900px)" srcset="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80&fm=webp 1200w, https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80&fm=webp 800w">
-                <source media="(min-width:900px)" srcset="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80 1200w, https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80 800w">
-                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80" alt="Graph visualization on screen — RippleEdits" class="responsive-img" loading="lazy" decoding="async" width="200" height="200" sizes="(max-width:900px) 100vw, 200px">
-              </picture>
-            </figure>
-            <project-content>
-              <h3><a href="https://github.com/MaximPodgore/RippleEdits">RippleEdits</a></h3>
-              <p>Ripple Edits Benchmark extended for SingularityNET's graphRAG system. Evaluates the effects of knowledge editing in RAG systems.</p>
-              <div class="tag-list" role="list">
-                <button role="listitem">Benchmark</button>
-                <button role="listitem">RAG</button>
-                <button role="listitem">Research</button>
-              </div>
-            </project-content>
-          </li>
-          <li>
-            <figure class="project-figure" aria-hidden="false">
-              <picture>
-                <source type="image/webp" media="(min-width:900px)" srcset="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80&fm=webp 1200w, https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80&fm=webp 800w">
-                <source media="(min-width:900px)" srcset="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80 1200w, https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80 800w">
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80" alt="Web app UI on a tablet — CSE-110 project" class="responsive-img" loading="lazy" decoding="async" width="200" height="200" sizes="(max-width:900px) 100vw, 200px">
-              </picture>
-            </figure>
-            <project-content>
-              <h3><a href="https://github.com/CSE-110-Group-13/cse110-sp24-group13">CSE-110-Group-13</a></h3>
-              <p>Commit is a JavaScript web app for developer journaling that combines notes, projects, and tasks with markdown support and deadline tracking.</p>
-              <div class="tag-list" role="list">
-                <button role="listitem">Web</button>
-                <button role="listitem">JavaScript</button>
-                <button role="listitem">Product</button>
-              </div>
-            </project-content>
-          </li>
-        </ul>
-      </section>
+      
     </main>
 
     <footer>
@@ -132,75 +63,6 @@
     </noscript>
     <script src="js/theme-toggle.js"></script>
     <script src="js/page-transitions.js"></script>
-    <script>
-      // Hardcoded examples for Part 1 screenshot/demo
-      const demoData = [
-        {
-          title: 'Blackjack AI',
-          imgSrc: 'images/blackjack.jpeg',
-          imgAlt: 'Clip art representing Blackjack game',
-          description: 'Reinforcement-learning Blackjack agent using Monte Carlo and Q-Learning with policy visualization.',
-          href: 'https://github.com/MaximPodgore/Blackjack-AI',
-          linkText: 'View repository',
-          date: '2025-03-14',
-          tags: ['AI','Reinforcement','Visualization']
-        },
-        {
-          title: 'RippleEdits for graphRAG',
-          imgSrc: 'images/snet.jpeg',
-          imgAlt: 'SingularityNET branding imagery',
-          description: 'Benchmarking knowledge edits on RAG systems; extended suite for graphRAG experiments.',
-          href: 'https://github.com/MaximPodgore/RippleEdits',
-          linkText: 'Project repo',
-          date: '2025-07-22',
-          tags: ['Benchmark','RAG','Research']
-        },
-        {
-          title: 'Portfolio Refresh',
-          imgSrc: 'images/profile.jpg',
-          imgAlt: 'Profile image used in portfolio',
-          description: 'Performance-first, semantic HTML, and view transitions for smooth navigation.',
-          href: 'index.html',
-          linkText: 'Open site',
-          date: '2025-11-02',
-          tags: ['Performance','View Transitions','Semantic HTML']
-        }
-      ];
-
-      const list = document.getElementById('project-list');
-      if (list) {
-        demoData.forEach(item => {
-          const card = document.createElement('project-card');
-          card.setAttribute('title', item.title);
-          card.setAttribute('img-src', item.imgSrc);
-          card.setAttribute('img-alt', item.imgAlt);
-          card.setAttribute('description', item.description);
-          card.setAttribute('href', item.href);
-          card.setAttribute('link-text', item.linkText);
-          card.setAttribute('date', item.date);
-          card.setAttribute('tags', item.tags.join(','));
-          list.appendChild(card);
-        });
-      }
-
-      // Deliverable C: Show the markup that appears on the browser
-      function showRenderedMarkup() {
-        const firstCard = document.querySelector('project-card');
-        if (!firstCard) return;
-        const outer = document.getElementById('outer-markup-output');
-        const shadow = document.getElementById('shadow-markup-output');
-        const container = document.getElementById('rendered-markup');
-        if (!outer || !shadow || !container) return;
-        const serializer = new XMLSerializer();
-        const clone = firstCard.cloneNode(false); // show attributes but not children
-        container.hidden = false;
-        outer.textContent = serializer.serializeToString(clone);
-        if (firstCard.shadowRoot) {
-          // Pretty-print shadow DOM markup
-          shadow.textContent = firstCard.shadowRoot.innerHTML.trim();
-        }
-      }
-      customElements.whenDefined('project-card').then(showRenderedMarkup);
-    </script>
+    <script src="js/data-loading.js"></script>
   </body>
 </html>

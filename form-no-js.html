@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Contact — No JS form</title>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html">Maxim Podgore</a>
+      <nav class="site-nav desktop" role="navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <details class="site-menu">
+        <summary class="hamburger" aria-label="Toggle navigation">☰</summary>
+        <nav class="site-nav mobile" role="navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </details>
+      <button class="theme-toggle" aria-label="Switch to light mode" title="Toggle theme"></button>
+    </header>
+
+    <main>
+      <h1>Contact Us</h1>
+
+      <p>If you'd like to get in touch, please fill out the form below and press Send. This version works without JavaScript.</p>
+
+      <form id="contactForm" action="https://httpbin.org/post" method="post">
+        <fieldset>
+          <legend>Contact information</legend>
+
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" autocomplete="name" required minlength="2" maxlength="60" pattern="[A-Za-zÀ-ÖØ-öø-ÿ' \-]+" title="Name may contain letters, spaces, apostrophes and hyphens" aria-describedby="nameHelp">
+            <small id="nameHelp" class="muted">Required — letters, spaces, apostrophes and hyphens only.</small>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" required maxlength="254" title="Enter a valid email address" aria-describedby="emailHelp">
+            <small id="emailHelp" class="muted">Required — we'll only accept a properly formatted email address.</small>
+
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="Optional subject" maxlength="100" pattern="^[A-Za-z0-9\s\-\'\.,:;()?!]{0,100}$" title="Optional. Keep under 100 characters; avoid unusual symbols." aria-describedby="subjectHelp">
+            <small id="subjectHelp" class="muted">Optional — up to 100 characters.</small>
+
+            <label for="comments">Comments</label>
+            <textarea id="comments" name="comments" rows="6" required aria-required="true" minlength="10" maxlength="1000" aria-describedby="commentsHelp"></textarea>
+            <small id="commentsHelp" class="muted">Required — minimum 10 characters; max 1000.</small>
+
+
+          <!-- required bot field -->
+          <input type="hidden" name="possible_bot" value="true">
+
+
+        <button type="submit">Send message</button>
+
+
+          <!-- Outputs below the fields -->
+          <output id="errorOutput" class="error" aria-live="polite" role="status">There are problems with some fields — please review highlighted inputs.</output>
+          <output id="infoOutput" class="info" aria-live="polite" role="status">All fields look good. Ready to send.</output>
+
+        </fieldset>
+      </form>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Maxim</p>
+    </footer>
+
+    <noscript>
+        <style>
+            .theme-toggle { display: none; }
+        </style>
+        <p style="padding: 1rem; background: var(--bg-tertiary); margin: 1rem; border-radius: 8px;">Note: JavaScript is disabled. The theme toggle requires JavaScript, but the form works without it.</p>
+    </noscript>
+    <script src="js/theme-toggle.js"></script>
+    <script src="js/page-transitions.js"></script>
+  </body>
+</html>

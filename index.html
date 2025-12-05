@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="author" content="Maxim Podgore">
+        <title>Maxim Podgore — Portfolio</title>
+        <link rel="stylesheet" href="css/styles.css">
+        <script>
+            window.APP = { name: 'Maxim Portfolio' };
+        </script>
+    </head>
+    <body>
+        <header class="site-header">
+           <a class="brand" href="index.html">Maxim Podgore</a>
+           <nav class="site-nav desktop" role="navigation">
+               <ul>
+                   <li><a href="index.html" aria-current="page">Home</a></li>
+                   <li><a href="projects.html">Projects</a></li>
+                   <li><a href="resume.html">Resume</a></li>
+                   <li><a href="contact.html">Contact</a></li>
+               </ul>
+           </nav>
+   
+           <details class="site-menu">
+               <summary class="hamburger" aria-label="Toggle navigation">☰</summary>
+               <nav class="site-nav mobile" role="navigation">
+                   <ul>
+                        <li><a href="index.html" aria-current="page">Home</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="resume.html">Resume</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                   </ul>
+               </nav>
+           </details>
+           <button class="theme-toggle" aria-label="Switch to light mode" title="Toggle theme"></button>
+        </header>
+
+        <main>
+            <section class="hero">
+                <h1>My name is Maxim Podgore</h1>
+                <p class="lead">I'm a software developer and researcher focused on Artificial Intelligence, with current research in Black-Box Optimization and static analysis tools. I have also worked on Mobile Development, UI/UX, Front-End, Database, and Bioinformatics teams.</p>
+                <p class="cta">Resume available <a href="resume.html">here</a> · <a href="https://github.com/MaximPodgore" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+            </section>
+
+            <section class="work-list" aria-label="Work Experience">
+                <h3>Work Experience</h3>
+
+                <work-experience>
+                    <figure class="thumb" aria-hidden="false">
+                        <picture>
+                            <source type="image/webp" media="(min-width:50rem)" srcset="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80&fm=webp 1400w, https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80&fm=webp 1000w">
+                            <source media="(min-width:50rem)" srcset="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80 1400w, https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80 1000w">
+                            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80" alt="Team working at desks with laptops — UCSD Information Technology Services" class="responsive-img" loading="lazy" decoding="async" width="1200" height="480">
+                        </picture>
+                        <figcaption class="visually-hidden">UCSD Information Technology Services team</figcaption>
+                    </figure>
+                    <section class="we-body">
+                        <h4>Machine Learning Engineer / TL <span class="dates">January 2024 - Present</span></h4>
+                        <p class="meta">UCSD Information Technology Services</p>
+                        <ul>
+                            <li>Developed an AI contract review agent leveraging LiteLLM, LLaMA, and Qwen-Embedding for prompt tuning via user feedback. The agent uses a novel Inverse Reinforcement Learning (IRL) pipeline to suggest edits to legal documents and learn from user feedback, driving a 10% increase in contract settlements per month.</li>
+                            <li>Built an AI-powered OCR pipeline to assist with transcript validation via NanoNets, NVLM-D, and Docker for layout processing, OCR, and business logic, automating the processing of 30,000 UCSD student transcripts.</li>
+                            <li>Led a team of 4 student engineers to design and deploy ML solutions, mentoring and assisting with technical problems throughout the process.</li>
+                        </ul>
+                    </section>
+                </work-experience>
+
+                <work-experience>
+                    <figure class="thumb" aria-hidden="false">
+                        <img src="images/snet.jpeg" alt="SingularityNET logo" class="responsive-img" loading="lazy" decoding="async" width="200" height="200">
+                        <figcaption class="visually-hidden">SingularityNET internship work</figcaption>
+                    </figure>
+                    <section class="we-body">
+                        <h4>Machine Learning Engineer Intern <span class="dates">July 2025 - September 2025</span></h4>
+                        <p class="meta">SingularityNET</p>
+                        <ul>
+                            <li>Resolved knowledge conflicts in a Graph RAG system by integrating timestamps and confidence-based sampling into Neo4j-based graph construction, improving consistency and reliability of retrieved information by 30%.</li>
+                            <li>Refactored a cutting-edge benchmark to extend to graph-RAG systems using qwikidata and pandas, testing knowledge recall and ripple effects caused by introducing counterfactual knowledge triplets to the system.</li>
+                        </ul>
+                    </section>
+                </work-experience>
+
+                <work-experience>
+                    <figure class="thumb" aria-hidden="false">
+                        <picture>
+                            <source type="image/webp" media="(min-width:50rem)" srcset="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1400&q=80&fm=webp 1400w, https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1000&q=80&fm=webp 1000w">
+                            <source media="(min-width:50rem)" srcset="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1400&q=80 1400w, https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1000&q=80 1000w">
+                            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80" alt="Researcher viewing static analysis visualizations — Stanford Novel Computing Lab" class="responsive-img" loading="lazy" decoding="async" width="200" height="200">
+                        </picture>
+                        <figcaption class="visually-hidden">Stanford Novel Computing Systems Lab research</figcaption>
+                    </figure>
+                    <section class="we-body">
+                        <h4>Artificial Intelligence Researcher <span class="dates">May 2024 - Present</span></h4>
+                        <p class="meta">Stanford Novel Computing System’s Lab</p>
+                        <ul>
+                            <li>Built a C++ static analysis tool for the dReal SMT solver to address floating-point soundness issues, implementing a graph-based LLVM AST solver to validate rounding mode constraints, which detected 200+ problematic lines.</li>
+                        </ul>
+                    </section>
+                </work-experience>
+
+            </section>
+
+            <noscript>
+                <p>Please enable JavaScript for full functionality.</p>
+            </noscript>
+
+        </main>
+
+        <footer>
+            <p>© 2025 Maxim</p>
+        </footer>
+    
+        <noscript>
+            <style>
+                .theme-toggle { display: none; }
+            </style>
+        </noscript>
+        <script src="js/theme-toggle.js"></script>
+        <script src="js/page-transitions.js"></script>
+    </body>
+</html>

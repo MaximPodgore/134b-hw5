@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>View Transitions Test</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+      .transition-demo {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: var(--bg-tertiary);
+        border-radius: 12px;
+        border: 2px solid var(--border-medium);
+      }
+      .transition-demo h2 {
+        color: var(--text-accent);
+        margin-top: 0;
+      }
+      .demo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin: 1.5rem 0;
+      }
+      .demo-card {
+        padding: 1.5rem;
+        background: var(--bg-primary);
+        border-radius: 8px;
+        border: 1px solid var(--border-medium);
+        text-align: center;
+        transition: transform 0.2s ease;
+      }
+      .demo-card:hover {
+        transform: translateY(-4px);
+      }
+      .demo-card a {
+        display: block;
+        color: var(--link-color);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+      .demo-card a:hover {
+        color: var(--text-primary);
+      }
+      .status-indicator {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-weight: 600;
+        margin: 1rem 0;
+      }
+      .status-supported {
+        background: #10b981;
+        color: white;
+      }
+      .status-not-supported {
+        background: #ef4444;
+        color: white;
+      }
+      .instructions {
+        background: var(--bg-secondary);
+        padding: 1rem;
+        border-left: 4px solid var(--link-color);
+        margin: 1rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html">Maxim Podgore</a>
+      <nav class="site-nav desktop" role="navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <details class="site-menu">
+        <summary class="hamburger" aria-label="Toggle navigation">☰</summary>
+        <nav class="site-nav mobile" role="navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </details>
+      <button class="theme-toggle" aria-label="Switch to light mode" title="Toggle theme"></button>
+    </header>
+
+    <main>
+      <div class="transition-demo">
+        <h2>🎬 View Transition API Demo</h2>
+        
+        <div id="support-status">
+          <p><strong>Browser Support Status:</strong></p>
+          <span id="status-badge" class="status-indicator">Checking...</span>
+        </div>
+
+        <div class="instructions">
+          <h3>📋 How to Test:</h3>
+          <ol>
+            <li>Click any navigation link in the header above</li>
+            <li>Watch for a smooth fade + slide transition between pages</li>
+            <li>Try navigating between different pages (Home, Projects, Resume, Contact)</li>
+            <li>Notice how the old page slides out and the new page slides in smoothly</li>
+          </ol>
+        </div>
+
+        <h3>Quick Test Links:</h3>
+        <div class="demo-grid">
+          <div class="demo-card">
+            <a href="index.html">
+              <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏠</div>
+              Home Page
+            </a>
+          </div>
+          <div class="demo-card">
+            <a href="projects.html">
+              <div style="font-size: 2rem; margin-bottom: 0.5rem;">💼</div>
+              Projects
+            </a>
+          </div>
+          <div class="demo-card">
+            <a href="resume.html">
+              <div style="font-size: 2rem; margin-bottom: 0.5rem;">📄</div>
+              Resume
+            </a>
+          </div>
+          <div class="demo-card">
+            <a href="contact.html">
+              <div style="font-size: 2rem; margin-bottom: 0.5rem;">✉️</div>
+              Contact
+            </a>
+          </div>
+        </div>
+
+        <div style="margin-top: 2rem; padding: 1rem; background: var(--bg-secondary); border-radius: 8px;">
+          <h3>Technical Details:</h3>
+          <ul>
+            <li><strong>Approach:</strong> MPA (Multi-Page Application)</li>
+            <li><strong>Duration:</strong> 0.4 seconds</li>
+            <li><strong>Animation:</strong> Fade + Slide (20px)</li>
+            <li><strong>Easing:</strong> cubic-bezier(0.4, 0, 0.2, 1)</li>
+            <li><strong>Accessibility:</strong> Respects prefers-reduced-motion</li>
+          </ul>
+        </div>
+
+        <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+          <p><strong>Note:</strong> View Transition API requires Chrome 111+, Edge 111+, or Opera 97+. 
+          Safari and Firefox do not currently support this API (navigation will work normally without transitions).</p>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>View Transition API Demo - Assignment 4.2</p>
+    </footer>
+
+    <noscript>
+      <style>
+        .theme-toggle { display: none; }
+        #support-status { display: none; }
+      </style>
+    </noscript>
+    <script src="js/theme-toggle.js"></script>
+    <script src="js/page-transitions.js"></script>
+    <script>
+      // Check and display support status
+      document.addEventListener('DOMContentLoaded', function() {
+        const badge = document.getElementById('status-badge');
+        if ('startViewTransition' in document) {
+          badge.textContent = '✓ View Transitions Supported!';
+          badge.className = 'status-indicator status-supported';
+        } else {
+          badge.textContent = '✗ Not Supported (transitions disabled)';
+          badge.className = 'status-indicator status-not-supported';
+        }
+      });
+    </script>
+  </body>
+</html>

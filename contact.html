@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Contact</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <meta name="robots" content="noindex">
+  </head>
+  <body>
+        <header class="site-header">
+           <a class="brand" href="index.html">Maxim Podgore</a>
+           <nav class="site-nav desktop" role="navigation">
+               <ul>
+                   <li><a href="index.html">Home</a></li>
+                   <li><a href="projects.html">Projects</a></li>
+                   <li><a href="resume.html">Resume</a></li>
+                   <li><a href="contact.html" aria-current="page">Contact</a></li>
+               </ul>
+           </nav>
+   
+           <details class="site-menu">
+               <summary class="hamburger" aria-label="Toggle navigation">☰</summary>
+               <nav class="site-nav mobile" role="navigation">
+                   <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="resume.html">Resume</a></li>
+                        <li><a href="contact.html" aria-current="page">Contact</a></li>
+                   </ul>
+               </nav>
+           </details>
+           <button class="theme-toggle" aria-label="Switch to light mode" title="Toggle theme"></button>
+        </header>
+
+    <main>
+      <section class="contact-grid">
+        <div class="contact-left">
+          <h2>Send a message</h2>
+          <profile-card class="profile-card">
+            <div class="pc-inner">
+              <div class="avatar" aria-hidden="false">
+                <picture>
+                  <source srcset="images/project1.svg" type="image/svg+xml">
+                  <img src="images/project1.svg" alt="Portrait illustration of Maxim Podgore" class="responsive-img" width="64" height="64" loading="lazy">
+                </picture>
+              </div>
+              <div class="meta">
+                <div class="name">Maxim Podgore</div>
+                <div class="role">AI engineer</div>
+                <div class="links"><a href="https://github.com/MaximPodgore">GitHub</a></div>
+              </div>
+            </div>
+          </profile-card>
+
+          <form id="contactForm">
+            <fieldset>
+              <legend>Contact details</legend>
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" required>
+
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" required>
+
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="4" required></textarea>
+
+              <button type="submit">Send</button>
+            </fieldset>
+          </form>
+
+          <dialog id="thanks">
+            <p>Thank you! Your message was received.</p>
+            <button id="closeDialog">Close</button>
+          </dialog>
+        </div>
+
+        <aside class="contact-side" aria-hidden="false" aria-label="Contact illustration">
+          <img src="images/profile.jpg" alt="Illustration of a workspace and contact elements" class="responsive-img sidebar-image" loading="lazy">
+        </aside>
+      </section>
+    </main>
+
+    <footer>
+      <p>Reach me via GitHub: <a href="https://github.com/MaximPodgore">profile</a></p>
+      <hello-world></hello-world>
+    </footer>
+
+    <noscript>
+        <style>
+            .theme-toggle { display: none; }
+        </style>
+    </noscript>
+    <script src="js/theme-toggle.js"></script>
+    <script src="js/hello-world.js"></script>
+    <script src="js/page-transitions.js"></script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Resume</title>
+    <meta name="description" content="Resume and CV">
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+        <header class="site-header">
+           <a class="brand" href="index.html">Maxim Podgore</a>
+           <nav class="site-nav desktop" role="navigation">
+               <ul>
+                   <li><a href="index.html">Home</a></li>
+                   <li><a href="projects.html">Projects</a></li>
+                   <li><a href="resume.html" aria-current="page">Resume</a></li>
+                   <li><a href="contact.html">Contact</a></li>
+               </ul>
+           </nav>
+   
+           <details class="site-menu">
+               <summary class="hamburger" aria-label="Toggle navigation">☰</summary>
+               <nav class="site-nav mobile" role="navigation">
+                   <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="resume.html" aria-current="page">Resume</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                   </ul>
+               </nav>
+           </details>
+           <button class="theme-toggle" aria-label="Switch to light mode" title="Toggle theme"></button>
+        </header>
+
+    <main>
+      <section>
+        <h2>Resume</h2>
+        <i>Requires you to log into Overleaf first, sorry</i>
+        <br>
+        <iframe id="resumeFrame" src="https://www.overleaf.com/project/667a700774b1a596e7ce6edc" title="resume" width="100%" style="border:0;" loading="lazy" allowfullscreen></iframe>
+        <br>
+        <progress value="100" max="100"></progress>
+      </section>
+    </main>
+
+    <footer>
+      <p>Made with my plain HTML.</p>
+    </footer>
+
+    <noscript>
+      <style>
+        .theme-toggle { display: none; }
+      </style>
+    </noscript>
+    <script src="js/theme-toggle.js"></script>
+    <script src="js/page-transitions.js"></script>
+  </body>
+</html>

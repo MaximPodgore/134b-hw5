@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Tiny project thumbnail SVG used as a lightweight fallback -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img" aria-labelledby="projTitle projDesc">
+  <title id="projTitle">Project thumbnail</title>
+  <desc id="projDesc">Abstract geometric thumbnail used as a project image placeholder.</desc>
+  <rect width="100%" height="100%" fill="#2e2e2e"/>
+  <circle cx="200" cy="160" r="80" fill="#c6a8ff" opacity="0.12"/>
+  <rect x="60" y="240" width="280" height="90" rx="8" fill="#dedede" opacity="0.06"/>
+</svg>

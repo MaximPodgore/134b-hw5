@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Contact — No JS form</title>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html">Maxim Podgore</a>
+      <nav class="site-nav desktop" role="navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <details class="site-menu">
+        <summary class="hamburger" aria-label="Toggle navigation">☰</summary>
+        <nav class="site-nav mobile" role="navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </details>
+      <button class="theme-toggle" aria-label="Switch to light mode" title="Toggle theme"></button>
+    </header>
+
+    <main>
+      <h1>Contact Us</h1>
+
+      <p>If you'd like to get in touch, please fill out the form below and press Send. This version works without JavaScript.</p>
+
+      <form id="contactForm" action="https://httpbin.org/post" method="post" novalidate>
+        <fieldset>
+          <legend>Contact information</legend>
+
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" autocomplete="name" required minlength="2" maxlength="60" pattern="[A-Za-zÀ-ÖØ-öø-ÿ' \-]+" title="Name may contain letters, spaces, apostrophes and hyphens" aria-describedby="nameHelp">
+            <small id="nameHelp" class="muted">Required — letters, spaces, apostrophes and hyphens only.</small>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" required maxlength="254" title="Enter a valid email address" aria-describedby="emailHelp">
+            <small id="emailHelp" class="muted">Required — we'll only accept a properly formatted email address.</small>
+
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="Optional subject" maxlength="100" pattern="^[A-Za-z0-9\s\-\'\.,:;()?!]{0,100}$" title="Optional. Keep under 100 characters; avoid unusual symbols." aria-describedby="subjectHelp">
+            <small id="subjectHelp" class="muted">Optional — up to 100 characters.</small>
+
+            <label for="comments">Comments</label>
+            <textarea id="comments" name="comments" rows="6" required aria-required="true" minlength="3" maxlength="20" aria-describedby="commentsHelp"></textarea>
+            <small id="commentsHelp" class="muted">Required — minimum 3 characters; max 20.</small>
+            <small id="commentsCount" class="muted">20 characters remaining</small>
+
+
+          <!-- required bot field -->
+          <input type="hidden" name="possible_bot" value="true">
+          <!-- will contain JSON-encoded form errors for server-side logging -->
+          <input type="hidden" name="form_errors" id="formErrorsInput" value="">
+
+
+        <button type="submit">Send message</button>
+
+
+          <!-- Outputs below the fields -->
+          <output id="errorOutput" class="error" aria-live="polite" role="status">There are problems with some fields — please review highlighted inputs.</output>
+          <output id="infoOutput" class="info" aria-live="polite" role="status">All fields look good. Ready to send.</output>
+
+        </fieldset>
+      </form>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Maxim</p>
+    </footer>
+
+    <noscript>
+        <style>
+            .theme-toggle { display: none; }
+        </style>
+    </noscript>
+    <script src="js/theme-toggle.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        const form = document.getElementById('contactForm');
+        const errorOutput = document.getElementById('errorOutput');
+        const infoOutput = document.getElementById('infoOutput');
+        const comments = document.getElementById('comments');
+        const commentsCount = document.getElementById('commentsCount');
+        const formErrorsInput = document.getElementById('formErrorsInput');
+
+        // Array to capture errors before/when submitting
+        const form_errors = [];
+
+        // Helper: show a temporary message in the error output area
+        function showTempError(message, duration = 1600){
+          const prev = errorOutput.textContent;
+          errorOutput.textContent = message;
+          errorOutput.style.display = 'block';
+          setTimeout(()=>{
+            // Restore default message only if there are no persistent errors
+            errorOutput.style.display = '';
+            errorOutput.textContent = prev;
+          }, duration);
+        }
+
+        // Helper: update the info output visibility
+        function updateInfo(){
+          try{
+            if (form.checkValidity()){
+              infoOutput.style.display = 'block';
+            } else {
+              infoOutput.style.display = '';
+            }
+          } catch (e){}
+        }
+
+        // Attach illegal-character discourager for fields that include a pattern
+        Array.from(form.querySelectorAll('input[type="text"][pattern], input[type="email"][pattern], textarea[pattern]')).forEach(field => {
+          const pat = field.getAttribute('pattern');
+          if (!pat) return;
+
+          // Try to extract a character class from the pattern (first [...] block)
+          const m = pat.match(/\[([^\]]+)\]/);
+          if (!m) return;
+          const charClass = m[1];
+
+          // Create a regex that matches a single allowed character
+          let allowedCharRe;
+          try{
+            allowedCharRe = new RegExp('^[' + charClass + ']$','u');
+          } catch(e){
+            return; // if building regex fails, skip
+          }
+
+          field.addEventListener('keypress', (evt) => {
+            const key = evt.key;
+            // Ignore control keys
+            if (key.length !== 1) return;
+
+            if (!allowedCharRe.test(key)){
+              // discourage: prevent input, flash field, and show a brief message
+              evt.preventDefault();
+              field.classList.add('flash');
+              setTimeout(()=> field.classList.remove('flash'), 700);
+              showTempError('Illegal character entered: "' + key + '"');
+            }
+          });
+        });
+
+        // Custom validity messages for fields (example: name and subject)
+        function setCustomMessages(field){
+          field.setCustomValidity('');
+          if (!field.validity.valid){
+            if (field.validity.valueMissing){
+              field.setCustomValidity('This field is required.');
+            } else if (field.validity.tooShort){
+              field.setCustomValidity('Too short — please lengthen this field.');
+            } else if (field.validity.tooLong){
+              field.setCustomValidity('Too long — please shorten this field.');
+            } else if (field.validity.typeMismatch){
+              field.setCustomValidity('Please enter a value of the requested type.');
+            } else if (field.validity.patternMismatch){
+              field.setCustomValidity('Please follow the allowed format for this field.');
+            }
+          }
+        }
+
+        // Wire up input/blur events to update custom messages and info area
+        Array.from(form.querySelectorAll('input, textarea')).forEach(control => {
+          control.addEventListener('input', (e) => {
+            setCustomMessages(control);
+            updateInfo();
+          });
+          control.addEventListener('blur', (e) => {
+            setCustomMessages(control);
+          });
+        });
+
+        // Comments (textarea) character countdown and warning styling
+        if (comments){
+          const max = parseInt(comments.getAttribute('maxlength') || '1000', 10);
+          function updateCountdown(){
+            const remaining = Math.max(0, max - comments.value.length);
+            commentsCount.textContent = remaining + ' characters remaining';
+            if (remaining <= 10) commentsCount.classList.add('warn'); else commentsCount.classList.remove('warn');
+            if (comments.value.length > max){
+              comments.setCustomValidity('You have exceeded the maximum character limit.');
+            } else {
+              comments.setCustomValidity('');
+            }
+            updateInfo();
+          }
+          comments.addEventListener('input', updateCountdown);
+          // init
+          updateCountdown();
+        }
+
+        // On submit: gather errors into form_errors[], attach JSON to hidden input
+        form.addEventListener('submit', (evt) => {
+          console.log('Submit event triggered');
+          
+          // Force custom messages to be set before checking validity
+          Array.from(form.querySelectorAll('input, textarea')).forEach(setCustomMessages);
+
+          const isValid = form.checkValidity();
+          console.log('Form valid?', isValid);
+
+          if (!isValid){
+            evt.preventDefault();
+            console.log('Form has errors, preventing submission');
+
+            // Collect invalid controls and APPEND to form_errors array
+            const invalids = form.querySelectorAll(':invalid');
+            console.log('Invalid controls found:', invalids.length);
+            
+            const timestamp = new Date().toISOString();
+            invalids.forEach(control => {
+              const error = { 
+                field: control.name || control.id || control.tagName, 
+                message: control.validationMessage,
+                timestamp: timestamp
+              };
+              console.log('Adding error:', error);
+              form_errors.push(error);
+            });
+
+            // Put JSON-encoded errors into the hidden field so it will be posted
+            if (formErrorsInput) {
+              formErrorsInput.value = JSON.stringify(form_errors);
+              console.log('Total errors in array:', form_errors.length);
+              console.log('Hidden field value set to:', formErrorsInput.value);
+            }
+
+            // Show a clear message and focus the first invalid control
+            errorOutput.textContent = 'There are errors — please fix highlighted fields.';
+            errorOutput.style.display = 'block';
+            if (invalids.length) invalids[0].focus();
+            // Let browser show per-field messages
+            form.reportValidity();
+            return false;
+          }
+
+          // No invalid fields; include all previously collected errors from failed attempts
+          console.log('Form is valid, submitting with error history');
+          if (formErrorsInput) {
+            formErrorsInput.value = JSON.stringify(form_errors);
+            console.log('Submitting with', form_errors.length, 'previous errors');
+            console.log('Final hidden field value:', formErrorsInput.value);
+          }
+
+          // allow normal submit
+        });
+      });
+    </script>
+    <script src="js/page-transitions.js"></script>
+  </body>
+</html>

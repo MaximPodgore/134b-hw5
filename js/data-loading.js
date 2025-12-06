@@ -3,27 +3,13 @@
   const LS_KEY = 'projectsData';
   const REMOTE_URL = 'https://api.jsonbin.io/v3/b/693263ecd0ea881f4013f231/latest';
 
-  // Cache for env-based key loaded from env.json
-  let ENV_JSONBIN_MASTER_KEY = null;
-
-  // Load env.json if present to get secrets without committing them inline
-  async function loadEnv() {
-    try {
-      const res = await fetch('env.json', { cache: 'no-store' });
-      if (!res.ok) return; // env file optional
-      const env = await res.json();
-      if (env && typeof env.JSONBIN_MASTER_KEY === 'string' && env.JSONBIN_MASTER_KEY.trim().length) {
-        ENV_JSONBIN_MASTER_KEY = env.JSONBIN_MASTER_KEY.trim();
-      }
-    } catch(_) {
-      // ignore; env file is optional
-    }
-  }
+  // Hardcoded JSONBin master key to ensure remote always works
+  const ENV_JSONBIN_MASTER_KEY = "$2a$10$pw2cLHlPPAKcrIYm7IrPFeVuuDL3T3HITldfTSfdVc.6GwsQAQXEC";
 
   // Prefer storing your JSONBin master key in localStorage to avoid committing secrets.
   // In DevTools Console, run: localStorage.setItem('jsonbinMasterKey', 'YOUR_MASTER_KEY')
   function getJsonBinHeaders() {
-    const key = ENV_JSONBIN_MASTER_KEY || localStorage.getItem('jsonbinMasterKey');
+    const key = ENV_JSONBIN_MASTER_KEY;
     const headers = { 'Accept': 'application/json' };
     if (key) headers['X-Master-Key'] = key;
     headers['X-Bin-Meta'] = 'false'; // ask JSONBin to return only the record array
@@ -109,7 +95,7 @@
       const res = await fetch(REMOTE_URL, { headers: getJsonBinHeaders() });
       if (!res.ok) {
         if (res.status === 401 || res.status === 403) {
-          throw new Error('Unauthorized. Set your JSONBin master key in localStorage.');
+          throw new Error('Unauthorized. JSONBin master key invalid or missing.');
         }
         throw new Error(`HTTP ${res.status}`);
       }
@@ -120,13 +106,11 @@
       renderProjects(arr);
     } catch (err) {
       console.error('Failed to load remote data', err);
-      alert('Failed to load remote data. If the bin is private, set your master key.');
+      alert('Failed to load remote data. Please verify JSONBin access.');
     }
   }
 
   function init() {
-    // Fire and forget; load env.json if available
-    loadEnv();
     const btnLocal = document.getElementById('btn-load-local');
     const btnRemote = document.getElementById('btn-load-remote');
     if (btnLocal) btnLocal.addEventListener('click', loadLocal);

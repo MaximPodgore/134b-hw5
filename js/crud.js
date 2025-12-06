@@ -2,17 +2,10 @@
   const LS_KEY = 'projectsData';
   const REMOTE_READ_URL = 'https://api.jsonbin.io/v3/b/693263ecd0ea881f4013f231/latest';
   const REMOTE_WRITE_URL = 'https://api.jsonbin.io/v3/b/693263ecd0ea881f4013f231';
-
-  let ENV_JSONBIN_MASTER_KEY = null;
-
-  async function loadEnv() {
-    try {
-      ENV_JSONBIN_MASTER_KEY = "$2a$10$pw2cLHlPPAKcrIYm7IrPFeVuuDL3T3HITldfTSfdVc.6GwsQAQXEC";
-    } catch(_) {}
-  }
+  const ENV_JSONBIN_MASTER_KEY = "$2a$10$pw2cLHlPPAKcrIYm7IrPFeVuuDL3T3HITldfTSfdVc.6GwsQAQXEC";
 
   function getJsonBinHeaders(includeContent=false) {
-    const key = ENV_JSONBIN_MASTER_KEY || localStorage.getItem('jsonbinMasterKey');
+    const key = ENV_JSONBIN_MASTER_KEY;
     const headers = { 'Accept': 'application/json' };
     if (key) headers['X-Master-Key'] = key;
     if (includeContent) headers['Content-Type'] = 'application/json';
@@ -20,8 +13,8 @@
   }
 
   function getStore() {
-    const el = document.querySelector('input[name="store"]:checked');
-    return el ? el.value : 'local';
+    // Force remote store to ensure remote load always works
+    return 'remote';
   }
 
   function parseTags(str) {
@@ -86,10 +79,12 @@
   }
 
   async function readData() {
-    return getStore() === 'local' ? readLocal() : await readRemote();
+    // Always read from remote to ensure consistency
+    return await readRemote();
   }
   async function writeData(arr) {
-    return getStore() === 'local' ? writeLocal(arr) : await writeRemote(arr);
+    // Always write to remote to ensure consistency
+    return await writeRemote(arr);
   }
 
   function setStatus(el, msg, ok=true) {
@@ -169,7 +164,6 @@
   }
 
   async function init() {
-    loadEnv();
     attachCreate();
     attachUpdate();
     attachDelete();

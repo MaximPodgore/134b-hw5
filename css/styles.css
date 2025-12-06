@@ -456,6 +456,76 @@ ul{padding-left:0}
   margin-block: 1rem;
 }
 
+/* CRUD forms (consistent styling with contact form) */
+.crud-form, .crud-form-target{
+  margin: 0.75rem 0;
+  max-width: 720px;
+}
+.crud-form fieldset, .crud-form-target{
+  background: linear-gradient(180deg, var(--overlay-light), transparent);
+  border: 1px solid var(--border-subtle);
+  padding: 1.25rem;
+  border-radius: 10px;
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: 1fr;
+}
+.crud-form legend, .crud-form-target legend{
+  color: var(--text-primary);
+  font-weight: 700;
+  padding: 0 0.25rem;
+}
+.crud-form label{
+  display: block;
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+.crud-form input, .crud-form textarea{
+  width: 100%;
+  margin-top: 0.35rem;
+  padding: 0.6rem 0.75rem;
+  background: var(--overlay-light);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  border-radius: 8px;
+}
+.crud-form textarea{ resize: vertical }
+.crud-form button{
+  margin-top: 0;
+  background: var(--link-color);
+  color: var(--bg-secondary);
+  border: 0;
+  padding: 0.6rem 0.9rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.crud-form button:hover{ filter: brightness(0.95) }
+.crud-form output{
+  display:block;
+  width:100%;
+  margin-top:0.5rem;
+  padding:0.5rem 0.75rem;
+  border-radius:6px;
+  min-height:1.1em;
+  font-size:0.95rem;
+}
+.crud-form output.error{ color:#ff6b6b; background:rgba(255,60,60,0.08); border:1px solid rgba(255,60,60,0.15) }
+.crud-form output.success{ color:#24d17e; background:rgba(36,209,126,0.08); border:1px solid rgba(36,209,126,0.15) }
+.crud-form input:focus, .crud-form textarea:focus{
+  outline: none;
+  border-color: #9ad6ff;
+  box-shadow: 0 0 0 3px rgba(154,214,255,0.06);
+}
+.crud-form input:focus-visible, .crud-form textarea:focus-visible{
+  outline: 3px solid color-mix(in srgb, var(--link,#e8e8e8) 40%, transparent);
+  outline-offset: 3px;
+}
+.crud-form input:invalid, .crud-form textarea:invalid{ border-color: rgba(255,60,60,0.85) }
+.crud-form input:focus:invalid, .crud-form textarea:focus:invalid{ box-shadow: 0 0 0 3px rgba(255,60,60,0.06) }
+.crud-form input:valid, .crud-form textarea:valid{ border-color: #6ee7a7 }
+
 /* ============================================
    View Transition API Styles (MPA-based)
    ============================================ */

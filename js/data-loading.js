@@ -54,7 +54,10 @@
   }
 
   function seedLocalStorage() {
-    if (localStorage.getItem(LS_KEY)) return;
+    // If projects already exist, do nothing
+    if (localStorage.getItem(LS_KEY)) {
+      return;
+    }
     const data = [
       {
         title: 'Blackjack AI',
@@ -124,11 +127,36 @@
   function init() {
     // Fire and forget; load env.json if available
     loadEnv();
-    seedLocalStorage();
     const btnLocal = document.getElementById('btn-load-local');
     const btnRemote = document.getElementById('btn-load-remote');
     if (btnLocal) btnLocal.addEventListener('click', loadLocal);
     if (btnRemote) btnRemote.addEventListener('click', loadRemote);
+    // Auto-load local data when on the Projects page
+    // Detect by DOM: has project list and no CRUD section
+    try {
+      const hasProjectList = !!document.getElementById('project-list');
+      const hasCrudSection = !!document.getElementById('crud');
+      if (hasProjectList && !hasCrudSection) {
+        // Seed local storage if empty when visiting projects page
+        seedLocalStorage();
+        loadLocal();
+      }
+    } catch (_) {}
+
+    // Also react to SPA navigation updates (View Transition API)
+    // When the main content is swapped, re-check for project list and render
+    document.addEventListener('spa:page-updated', () => {
+      try {
+        const hasProjectList = !!document.getElementById('project-list');
+        const hasCrudSection = !!document.getElementById('crud');
+        if (hasProjectList && !hasCrudSection) {
+          // Seed local storage if empty when arriving via SPA navigation
+          seedLocalStorage();
+          // Use local data to render immediately
+          loadLocal();
+        }
+      } catch(_) {}
+    });
   }
 
   if (document.readyState === 'loading') {

@@ -138,6 +138,12 @@
     
     // Scroll to top
     window.scrollTo(0, 0);
+
+    // Notify listeners that the page content was updated (SPA navigation)
+    try {
+      const detail = { url: window.location.href, path: window.location.pathname };
+      document.dispatchEvent(new CustomEvent('spa:page-updated', { detail }));
+    } catch(_) {}
   }
 
   /**

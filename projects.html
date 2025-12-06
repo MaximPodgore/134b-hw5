@@ -15,7 +15,6 @@
           <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="projects.html" aria-current="page">Projects</a></li>
-            <li><a href="projects.html#crud">CRUD</a></li>
             <li><a href="resume.html">Resume</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
@@ -27,7 +26,6 @@
             <ul>
               <li><a href="index.html">Home</a></li>
               <li><a href="projects.html" aria-current="page">Projects</a></li>
-              <li><a href="projects.html#crud">CRUD</a></li>
               <li><a href="resume.html">Resume</a></li>
               <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -37,110 +35,11 @@
     </header>
 
     <main>
-      <section>
-        <h2>Projects</h2>
-        <p>Hi, I'm Maxim — a developer. Below are some of my pinned repositories from my GitHub profile.</p>
-      </section>
-
       <section aria-labelledby="pcards-heading">
-        <h2 id="pcards-heading">Custom Element: project-card</h2>
-        <p class="muted">Use the buttons to load cards from LocalStorage or a remote API.</p>
-        <div class="load-controls" role="group" aria-label="Data loading controls">
-          <button id="btn-load-local" type="button">Load Local</button>
-          <button id="btn-load-remote" type="button">Load Remote</button>
-        </div>
+        <h2 id="pcards-heading">Projects</h2>
+        <p class="muted">Projects load automatically from LocalStorage.</p>
         <div id="project-list" class="project-grid" aria-label="Project Cards"></div>
       </section>
-
-      <section id="crud" aria-labelledby="crud-heading">
-        <h2 id="crud-heading">Manage Projects (CRUD)</h2>
-        <p class="muted">Perform create, update, and delete against LocalStorage or JSONBin. After submitting, click "Load Local" or "Load Remote" above to refresh.</p>
-
-        <fieldset class="crud-form-target">
-          <legend>Target Data Store</legend>
-          <label><input type="radio" name="store" value="local" checked> Local (localStorage)</label>
-          <label><input type="radio" name="store" value="remote"> Remote (JSONBin)</label>
-        </fieldset>
-
-        <form id="form-create" class="crud-form" novalidate>
-          <fieldset>
-            <legend>Create</legend>
-            <label>Title
-              <input name="title" required value="Sample Project">
-            </label>
-            <label>Image URL
-              <input name="imgSrc" required value="https://picsum.photos/seed/crud/600/400">
-            </label>
-            <label>Image Alt
-              <input name="imgAlt" value="Placeholder image">
-            </label>
-            <label>Link URL
-              <input name="href" required value="https://example.com">
-            </label>
-            <label>Link Text
-              <input name="linkText" value="Visit">
-            </label>
-            <label>Date
-              <input name="date" type="date" value="2025-12-05">
-            </label>
-            <label>Description
-              <textarea name="description" rows="3" required>CRUD test item</textarea>
-            </label>
-            <label>Tags (comma-separated)
-              <input name="tags" value="Test,CRUD">
-            </label>
-            <button type="submit">Create Item</button>
-            <output id="out-create" role="status" aria-live="polite"></output>
-          </fieldset>
-        </form>
-
-        <form id="form-update" class="crud-form" novalidate>
-          <fieldset>
-            <legend>Update (by index)</legend>
-            <label>Index (0-based)
-              <input name="index" type="number" min="0" required value="0">
-            </label>
-            <label>Title
-              <input name="title" required value="Updated Project">
-            </label>
-            <label>Image URL
-              <input name="imgSrc" required value="https://picsum.photos/seed/update/600/400">
-            </label>
-            <label>Image Alt
-              <input name="imgAlt" value="Updated placeholder">
-            </label>
-            <label>Link URL
-              <input name="href" required value="https://example.com/updated">
-            </label>
-            <label>Link Text
-              <input name="linkText" value="Details">
-            </label>
-            <label>Date
-              <input name="date" type="date" value="2025-12-06">
-            </label>
-            <label>Description
-              <textarea name="description" rows="3" required>Updated description via CRUD page</textarea>
-            </label>
-            <label>Tags (comma-separated)
-              <input name="tags" value="Updated,CRUD">
-            </label>
-            <button type="submit">Update Item</button>
-            <output id="out-update" role="status" aria-live="polite"></output>
-          </fieldset>
-        </form>
-
-        <form id="form-delete" class="crud-form" novalidate>
-          <fieldset>
-            <legend>Delete (by index)</legend>
-            <label>Index (0-based)
-              <input name="index" type="number" min="0" required value="0">
-            </label>
-            <button type="submit" class="danger">Delete Item</button>
-            <output id="out-delete" role="status" aria-live="polite"></output>
-          </fieldset>
-        </form>
-      </section>
-      
     </main>
 
     <footer>
@@ -155,6 +54,5 @@
     <script src="js/theme-toggle.js"></script>
     <script src="js/page-transitions.js"></script>
     <script src="js/data-loading.js"></script>
-    <script defer src="js/crud.js"></script>
   </body>
 </html>

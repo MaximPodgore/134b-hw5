@@ -3,153 +3,148 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Manage Projects (CRUD)</title>
-    <meta name="description" content="Create, update, and delete project data in localStorage or JSONBin.">
+    <title>Projects</title>
+    <meta name="description" content="List of projects">
     <link rel="stylesheet" href="css/styles.css">
+    <script defer src="js/project-card.js"></script>
   </head>
   <body>
     <header class="site-header">
       <a class="brand" href="index.html">Maxim Podgore</a>
-      <nav class="site-nav desktop" role="navigation">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="resume.html">Resume</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="crud.html" aria-current="page">CRUD</a></li>
-        </ul>
-      </nav>
-
-      <details class="site-menu">
-        <summary class="hamburger" aria-label="Toggle navigation">☰</summary>
-        <nav class="site-nav mobile" role="navigation">
+        <nav class="site-nav desktop" role="navigation">
           <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="projects.html">Projects</a></li>
+            <li><a href="projects.html" aria-current="page">Projects</a></li>
             <li><a href="resume.html">Resume</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="crud.html" aria-current="page">CRUD</a></li>
           </ul>
         </nav>
-      </details>
-      <button class="theme-toggle" aria-label="Switch to light mode" title="Toggle theme"></button>
+
+        <details class="site-menu">
+          <summary class="hamburger" aria-label="Toggle navigation">☰</summary>
+          <nav class="site-nav mobile" role="navigation">
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="projects.html" aria-current="page">Projects</a></li>
+              <li><a href="resume.html">Resume</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </nav>
+        </details>
+        <button class="theme-toggle" aria-label="Switch to light mode" title="Toggle theme"></button>
     </header>
 
     <main>
       <section>
-        <h2>Manage Projects (CRUD)</h2>
-        <p>Use the forms below to create, update, or delete items in either localStorage or the remote JSONBin store. Changes appear the next time you click "Load Local" or "Load Remote" on the Projects page.</p>
+        <h2>Projects</h2>
+        <p>Hi, I'm Maxim — a developer. Below are some of my pinned repositories from my GitHub profile.</p>
       </section>
 
-      <section aria-labelledby="store-select-heading">
-        <h3 id="store-select-heading">Target Data Store</h3>
-        <fieldset class="stack">
-          <legend>Select where to save changes</legend>
+      <section aria-labelledby="pcards-heading">
+        <h2 id="pcards-heading">Custom Element: project-card</h2>
+        <p class="muted">Use the buttons to load cards from LocalStorage or a remote API.</p>
+        <div class="load-controls" role="group" aria-label="Data loading controls">
+          <button id="btn-load-local" type="button">Load Local</button>
+          <button id="btn-load-remote" type="button">Load Remote</button>
+        </div>
+        <div id="project-list" class="project-grid" aria-label="Project Cards"></div>
+      </section>
+
+      <section id="crud" aria-labelledby="crud-heading">
+        <h2 id="crud-heading">Manage Projects (CRUD)</h2>
+        <p class="muted">Perform create, update, and delete against LocalStorage or JSONBin. After submitting, click "Load Local" or "Load Remote" above to refresh.</p>
+
+        <fieldset class="crud-form-target">
+          <legend>Target Data Store</legend>
           <label><input type="radio" name="store" value="local" checked> Local (localStorage)</label>
           <label><input type="radio" name="store" value="remote"> Remote (JSONBin)</label>
         </fieldset>
-        <p class="muted">Remote writes require a JSONBin master key. Add <code>JSONBIN_MASTER_KEY</code> to <code>env.json</code> or run in DevTools: <code>localStorage.setItem('jsonbinMasterKey', 'YOUR_MASTER_KEY')</code>.</p>
-      </section>
 
-      <section aria-labelledby="create-heading">
-        <h3 id="create-heading">Create</h3>
-        <form id="form-create" class="stack" novalidate>
-          <div class="grid two">
-            <label>Title <input name="title" required></label>
-            <label>Image URL <input name="imgSrc" placeholder="https://..." required></label>
-            <label>Image Alt <input name="imgAlt" placeholder="Description of image"></label>
-            <label>Link URL <input name="href" placeholder="https://..." required></label>
-            <label>Link Text <input name="linkText" value="Learn more"></label>
-            <label>Date <input name="date" type="date"></label>
-          </div>
-          <label>Description
-            <textarea name="description" rows="3" required></textarea>
-          </label>
-          <label>Tags (comma-separated)
-            <input name="tags" placeholder="AI,Research,Demo">
-          </label>
-          <button type="submit">Create Item</button>
-          <output id="out-create" role="status" aria-live="polite"></output>
+        <form id="form-create" class="crud-form" novalidate>
+          <fieldset>
+            <legend>Create</legend>
+            <label>Title
+              <input name="title" required value="Sample Project">
+            </label>
+            <label>Image URL
+              <input name="imgSrc" required value="https://picsum.photos/seed/crud/600/400">
+            </label>
+            <label>Image Alt
+              <input name="imgAlt" value="Placeholder image">
+            </label>
+            <label>Link URL
+              <input name="href" required value="https://example.com">
+            </label>
+            <label>Link Text
+              <input name="linkText" value="Visit">
+            </label>
+            <label>Date
+              <input name="date" type="date" value="2025-12-05">
+            </label>
+            <label>Description
+              <textarea name="description" rows="3" required>CRUD test item</textarea>
+            </label>
+            <label>Tags (comma-separated)
+              <input name="tags" value="Test,CRUD">
+            </label>
+            <button type="submit">Create Item</button>
+            <output id="out-create" role="status" aria-live="polite"></output>
+          </fieldset>
+        </form>
+
+        <form id="form-update" class="crud-form" novalidate>
+          <fieldset>
+            <legend>Update (by index)</legend>
+            <label>Index (0-based)
+              <input name="index" type="number" min="0" required value="0">
+            </label>
+            <label>Title
+              <input name="title" required value="Updated Project">
+            </label>
+            <label>Image URL
+              <input name="imgSrc" required value="https://picsum.photos/seed/update/600/400">
+            </label>
+            <label>Image Alt
+              <input name="imgAlt" value="Updated placeholder">
+            </label>
+            <label>Link URL
+              <input name="href" required value="https://example.com/updated">
+            </label>
+            <label>Link Text
+              <input name="linkText" value="Details">
+            </label>
+            <label>Date
+              <input name="date" type="date" value="2025-12-06">
+            </label>
+            <label>Description
+              <textarea name="description" rows="3" required>Updated description via CRUD page</textarea>
+            </label>
+            <label>Tags (comma-separated)
+              <input name="tags" value="Updated,CRUD">
+            </label>
+            <button type="submit">Update Item</button>
+            <output id="out-update" role="status" aria-live="polite"></output>
+          </fieldset>
+        </form>
+
+        <form id="form-delete" class="crud-form" novalidate>
+          <fieldset>
+            <legend>Delete (by index)</legend>
+            <label>Index (0-based)
+              <input name="index" type="number" min="0" required value="0">
+            </label>
+            <button type="submit" class="danger">Delete Item</button>
+            <output id="out-delete" role="status" aria-live="polite"></output>
+          </fieldset>
         </form>
       </section>
-
-      <section aria-labelledby="update-heading">
-        <h3 id="update-heading">Update (by index)</h3>
-        <form id="form-update" class="stack" novalidate>
-          <label>Index (0-based)
-            <input name="index" type="number" min="0" required>
-          </label>
-          <div class="grid two">
-            <label>Title <input name="title" required></label>
-            <label>Image URL <input name="imgSrc" placeholder="https://..." required></label>
-            <label>Image Alt <input name="imgAlt" placeholder="Description of image"></label>
-            <label>Link URL <input name="href" placeholder="https://..." required></label>
-            <label>Link Text <input name="linkText" value="Learn more"></label>
-            <label>Date <input name="date" type="date"></label>
-          </div>
-          <label>Description
-            <textarea name="description" rows="3" required></textarea>
-          </label>
-          <label>Tags (comma-separated)
-            <input name="tags" placeholder="AI,Research,Demo">
-          </label>
-          <button type="submit">Update Item</button>
-          <output id="out-update" role="status" aria-live="polite"></output>
-        </form>
-      </section>
-
-      <section aria-labelledby="delete-heading">
-        <h3 id="delete-heading">Delete (by index)</h3>
-        <form id="form-delete" class="stack" novalidate>
-          <label>Index (0-based)
-            <input name="index" type="number" min="0" required>
-          </label>
-          <button type="submit" class="danger">Delete Item</button>
-          <output id="out-delete" role="status" aria-live="polite"></output>
-        </form>
-      </section>
-
-      <section aria-labelledby="examples-heading">
-        <h3 id="examples-heading">Testing Examples</h3>
-        <p>Use these example values for quick testing:</p>
-        <div class="grid two">
-          <div>
-            <h4>Create Example</h4>
-            <ul class="muted">
-              <li>Title: Test Project</li>
-              <li>Image URL: https://picsum.photos/seed/crud/600/400</li>
-              <li>Image Alt: Placeholder image</li>
-              <li>Link URL: https://example.com</li>
-              <li>Link Text: Visit</li>
-              <li>Date: 2025-12-05</li>
-              <li>Description: CRUD test item</li>
-              <li>Tags: Test,CRUD</li>
-            </ul>
-          </div>
-          <div>
-            <h4>Update Example</h4>
-            <ul class="muted">
-              <li>Index: 1</li>
-              <li>Title: Updated Project</li>
-              <li>Image URL: https://picsum.photos/seed/update/600/400</li>
-              <li>Image Alt: Updated placeholder</li>
-              <li>Link URL: https://example.com/updated</li>
-              <li>Link Text: Details</li>
-              <li>Date: 2025-12-06</li>
-              <li>Description: Updated description via CRUD page</li>
-              <li>Tags: Updated,CRUD</li>
-            </ul>
-            <p class="muted">Tip: Index 1 updates the second item.</p>
-          </div>
-        </div>
-        <p>After changes, go to <a href="projects.html">Projects</a> and click "Load Local" or "Load Remote" to see results.</p>
-      </section>
+      
     </main>
 
     <footer>
       <p>&copy; 2025 Maxim</p>
     </footer>
-
+    
     <noscript>
       <style>
         .theme-toggle { display: none; }
@@ -157,6 +152,7 @@
     </noscript>
     <script src="js/theme-toggle.js"></script>
     <script src="js/page-transitions.js"></script>
+    <script src="js/data-loading.js"></script>
     <script defer src="js/crud.js"></script>
   </body>
 </html>

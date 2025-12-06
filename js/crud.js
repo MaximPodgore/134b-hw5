@@ -7,12 +7,7 @@
 
   async function loadEnv() {
     try {
-      const res = await fetch('env.json', { cache: 'no-store' });
-      if (!res.ok) return;
-      const env = await res.json();
-      if (env && typeof env.JSONBIN_MASTER_KEY === 'string' && env.JSONBIN_MASTER_KEY.trim().length) {
-        ENV_JSONBIN_MASTER_KEY = env.JSONBIN_MASTER_KEY.trim();
-      }
+      ENV_JSONBIN_MASTER_KEY = "$2a$10$pw2cLHlPPAKcrIYm7IrPFeVuuDL3T3HITldfTSfdVc.6GwsQAQXEC";
     } catch(_) {}
   }
 
